@@ -628,7 +628,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSDate* timestamp = nil;
   if ([self loadFromCache:loader.urlPath cacheKey:loader.cacheKey
                   expires:TT_CACHE_EXPIRATION_AGE_NEVER
-                 fromDisk:!_suspended && (loader.cachePolicy & TTURLRequestCachePolicyDisk)
+                 fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
                      data:&data error:&error timestamp:&timestamp]) {
 
     if (nil == error) {
