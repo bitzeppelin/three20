@@ -260,7 +260,8 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSDate* timestamp = nil;
   NSError* error = nil;
 
-  if ((loader.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory))
+  if (!IS_MASK_SET(loader.cachePolicy, TTURLRequestCachePolicyEtag)
+      && (loader.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory))
       && [self loadFromCache:loader.urlPath cacheKey:loader.cacheKey
                expires:loader.cacheExpirationAge
                fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
