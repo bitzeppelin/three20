@@ -24,6 +24,7 @@ VersionX-revision.h
 
 # build products
 build/
+Build/
 *.o
 src/Three20/*.[oa]
 
