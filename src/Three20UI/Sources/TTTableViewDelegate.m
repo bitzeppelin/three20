@@ -82,33 +82,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * If tableHeaderTintColor has been specified in the global style sheet and this is a plain table
- * (i.e. not a grouped one), then we create header view objects for each header and handle the
- * drawing ourselves.
- */
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  if (tableView.style == UITableViewStylePlain && TTSTYLEVAR(tableHeaderTintColor)) {
-    if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
-      NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-      if (title.length > 0) {
-        TTTableHeaderView* header = [_headers objectForKey:title];
-        if (nil == header) {
-          if (nil == _headers) {
-            _headers = [[NSMutableDictionary alloc] init];
-          }
-          header = [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
-          [_headers setObject:header forKey:title];
-        }
-        return header;
-      }
-    }
-  }
-  return nil;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
  * When the user taps a cell item, we check whether the tapped item has an attached URL and, if
  * it has one, we navigate to it. This also handles the logic for "Load more" buttons.
  */
